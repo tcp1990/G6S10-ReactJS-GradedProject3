@@ -11,10 +11,11 @@ function App() {
 
         <Container>
           <Routes>
-            <Route path="/about" element={<h1>Hi About</h1>} />
             <Route path="/restaurants/:id" element={<h1>Hi restaurant details</h1>} />
-            <Route path="/restaurants" element={<h1>Hi restaurants List</h1>} />
-            <Route path="/" element={<h1>Hi Home</h1>} />
+            <Route path="/TopRatedIndian" element={<h1>Hi Top rated Indian</h1>} />
+            <Route path="/TopRatedMovies" element={<h1>Hi Top rated movies</h1>} />
+            <Route path="/ComingSoon" element={<h1>Hi ComingSoon</h1>} />
+            <Route path="/" element={<h1>Hi Movies in theaters</h1>} />
           </Routes>
         </Container>
       </BrowserRouter>

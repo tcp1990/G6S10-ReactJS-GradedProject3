@@ -9,7 +9,7 @@ const NavigationMenu = () => {
     return (
         <Navbar bg="light" expand="lg">
             <Container fluid>
-                <Navbar.Brand to="/" as={NavLink}>Navbar scroll</Navbar.Brand>
+                <Navbar.Brand to="/" as={NavLink}>Movies in theaters</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -17,8 +17,9 @@ const NavigationMenu = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link to="/restaurants" as={NavLink}>restaurants</Nav.Link>
-                        <Nav.Link to="/about" as={NavLink}>About</Nav.Link>
+                        <Nav.Link to="/ComingSoon" as={NavLink}>Coming soon</Nav.Link>
+                        <Nav.Link to="/TopRatedIndian" as={NavLink}>Top rated Indian</Nav.Link>
+                        <Nav.Link to="/TopRatedMovies" as={NavLink}>Top rated movies</Nav.Link>
                     </Nav>
                     <Form className="d-flex">
                         <Form.Control
