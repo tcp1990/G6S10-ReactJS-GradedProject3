@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import IMovieItem from "./models/IMovieItem";
 import Home from './components/Home';
 import ComingSoon from './components/ComingSoon';
+import TopRatedIndian from './components/TopRatedIndian';
 import Favourites from './components/Favourites';
 import TopRatedMovies from './components/TopRatedMovies';
 
@@ -55,7 +56,7 @@ function App() {
             <Route path="/restaurants/:id" element={<h1>Hi restaurant details</h1>} />
             <Route path="/favourities" element={<Favourites/>} />
             <Route path="/top-rated-movies" element={<TopRatedMovies/>} />
-            <Route path="/top-rated-indian" element={<h1>Hi Top rated Indian</h1>} />
+            <Route path="/top-rated-indian" element={<TopRatedIndian handleFavouritesClick={addFavouriteMovie}/>} />
             <Route path="/coming-soon" element={<ComingSoon handleFavouritesClick={addFavouriteMovie}/>} />
             <Route path="/" element={<Home handleFavouritesClick={addFavouriteMovie}/>} />
           </Routes>
