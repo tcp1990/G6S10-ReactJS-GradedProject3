@@ -1,7 +1,40 @@
+import { useState, useEffect } from 'react';
+import IMovieItem from "../models/IMovieItem";
+import { getTopRatedMovies } from '../services/movies';
+import MovieCardItem from './MovieCardItem';
+import { Row, Col } from 'react-bootstrap';
+
 const TopRatedMovies = (props: any) => {
+    const [movies, setMovies] = useState<IMovieItem[]>([]);
+
+    useEffect(() => {
+        const getMovies = async () => {
+            try {
+                const topRatedMoviesData = await getTopRatedMovies();
+                setMovies(topRatedMoviesData);
+            } catch (error) {
+
+            } finally {
+
+            }
+        };
+
+        getMovies();
+    }, []);
+
     return (
         <>
-            <h1>Hi Top rated movies</h1>
+            <Row xs={1} md={2} lg={3}>
+                {
+                    movies.map((movie: IMovieItem) => (
+                        <Col key={movie.id} className="d-flex align-items-stretch my-3">
+                            <MovieCardItem
+                                movie={movie}
+                            />
+                        </Col>
+                    ))
+                }
+            </Row>
         </>
     );
 };

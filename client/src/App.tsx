@@ -10,8 +10,6 @@ import TopRatedIndian from './components/TopRatedIndian';
 import Favourites from './components/Favourites';
 import TopRatedMovies from './components/TopRatedMovies';
 
-
-
 function App() {
 
   const [favourites, setFavourites] = useState<IMovieItem[]>([]);
@@ -55,7 +53,7 @@ function App() {
           <Routes>
             <Route path="/restaurants/:id" element={<h1>Hi restaurant details</h1>} />
             <Route path="/favourities" element={<Favourites/>} />
-            <Route path="/top-rated-movies" element={<TopRatedMovies/>} />
+            <Route path="/top-rated-movies" element={<TopRatedMovies handleFavouritesClick={addFavouriteMovie}/>} />
             <Route path="/top-rated-indian" element={<TopRatedIndian handleFavouritesClick={addFavouriteMovie}/>} />
             <Route path="/coming-soon" element={<ComingSoon handleFavouritesClick={addFavouriteMovie}/>} />
             <Route path="/" element={<Home handleFavouritesClick={addFavouriteMovie}/>} />
