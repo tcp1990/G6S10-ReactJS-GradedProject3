@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import IMovieItem from "../models/IMovieItem";
-import { getMoviesInTheaters } from '../services/movies';
+import { getUpcomingMovies } from '../services/movies';
 import MovieCardItem from './MovieCardItem';
 import { Row, Col } from 'react-bootstrap';
 
-const Home = (props: any) => {
+const ComingSoon = (props: any) => {
     const [movies, setMovies] = useState<IMovieItem[]>([]);
 
     useEffect(() => {
         const getMovies = async () => {
             try {
-                const moviesInTheatersData = await getMoviesInTheaters();
-                setMovies(moviesInTheatersData);
+                const upcomingMoviesData = await getUpcomingMovies();
+                setMovies(upcomingMoviesData);
             } catch (error) {
 
             } finally {
@@ -39,4 +39,4 @@ const Home = (props: any) => {
     );
 };
 
-export default Home;
+export default ComingSoon;

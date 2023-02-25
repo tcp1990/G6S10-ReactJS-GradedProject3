@@ -1,7 +1,7 @@
 import axios from 'axios';
 import IMovieItem from '../models/IMovieItem';
 
-const getUpcominMovies = () => {
+const getUpcomingMovies = () => {
     return axios.get<IMovieItem[]>( `${process.env.REACT_APP_API_BASE_URL}/movies-coming` )
             .then( response => response.data )
 };
@@ -27,7 +27,7 @@ const getFavourites = () => {
 };
 
 export {
-    getUpcominMovies,
+    getUpcomingMovies,
     getMoviesInTheaters,
     getTopRatedIndia,
     getTopRatedMovies,
