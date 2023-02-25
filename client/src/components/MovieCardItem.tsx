@@ -1,7 +1,7 @@
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import IMovieItem from "../models/IMovieItem";
-
+import IMovieItem from '../models/IMovieItem';
+import FavouriteComponent from './favourites/AddFavourites';
 type Props = {
     movie: IMovieItem
 };
@@ -25,13 +25,15 @@ const MovieCardItem = ({ movie }: Props) => {
                     <div>
                         {title}
                     </div>
+                </Card.Title>
+                <Card.Text>
                     {/* <div onClick={() => props.handleFavouritesClick(movie)}
                                 className='movie-favourite-container'>
                             </div> */}
-                    <div
-                        className='movie-favourite-container'>
+                    <div className='movie-favourite-container'>
+                        <FavouriteComponent />
                     </div>
-                </Card.Title>
+                </Card.Text>
             </Card.Body>
         </Card>
     );
