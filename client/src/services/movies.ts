@@ -40,11 +40,18 @@ const addFavourites = (favouritemovie: IMovieItem) => {
     ).then(response => response.data)
 };
 
+const removeFavourites = (favouritemovie: IMovieItem) => {
+    return axios.delete<IMovieItem>(
+        `${baseUrl}/favourite/${favouritemovie.id}`
+    ).then(response => response.data)
+};
+
 export {
     getUpcomingMovies,
     getMoviesInTheaters,
     getTopRatedIndia,
     getTopRatedMovies,
     getFavourites,
-    addFavourites
+    addFavourites,
+    removeFavourites
 };

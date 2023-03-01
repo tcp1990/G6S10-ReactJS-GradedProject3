@@ -18,10 +18,8 @@ const MovieCardItem = (Props: any) => {
                     </div>
                 </Card.Title>
                 <Card.Text>
-                    {/* <div onClick={() => props.handleFavouritesClick(movie)}
-                                className='movie-favourite-container'>
-                            </div> */}
-                    <div className='movie-favourite-container'>
+                    <div onClick={() => Props.handleFavouritesClick(Props.movie)}
+                        className='movie-favourite-container'>
                         {Props.favouriteComponent}
                     </div>
                 </Card.Text>

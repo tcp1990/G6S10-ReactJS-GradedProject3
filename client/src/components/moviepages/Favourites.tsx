@@ -4,6 +4,7 @@ import { getFavourites } from '../../services/movies';
 import MovieCardItem from '../MovieCardItem';
 import { Row, Col } from 'react-bootstrap';
 import RemoveFavourites from '../favourites/RemoveFavourites';
+import { removeFavouriteMovie } from '../common';
 
 const Favourites = (props: any) => {
 
@@ -33,6 +34,7 @@ const Favourites = (props: any) => {
                             <MovieCardItem
                                 movie={movie}
                                 favouriteComponent={<RemoveFavourites />}
+                                handleFavouritesClick={removeFavouriteMovie}
                             />
                         </Col>
                     ))

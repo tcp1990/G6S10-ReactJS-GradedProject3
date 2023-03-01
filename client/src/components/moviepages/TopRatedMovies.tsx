@@ -4,6 +4,7 @@ import { getTopRatedMovies } from '../../services/movies';
 import MovieCardItem from '../MovieCardItem';
 import { Row, Col } from 'react-bootstrap';
 import FavouriteComponent from '../favourites/AddFavourites';
+import { addFavouriteMovie } from '../common';
 
 const TopRatedMovies = (props: any) => {
     const [movies, setMovies] = useState<IMovieItem[]>([]);
@@ -32,6 +33,7 @@ const TopRatedMovies = (props: any) => {
                             <MovieCardItem
                                 movie={movie}
                                 favouriteComponent={<FavouriteComponent />}
+                                handleFavouritesClick={addFavouriteMovie}
                             />
                         </Col>
                     ))
