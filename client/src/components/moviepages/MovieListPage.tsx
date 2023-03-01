@@ -32,10 +32,11 @@ const MovieListPage = (props: Props) => {
                     />
                 )
             }
+
             {
                 props.movies && (
                     <>
-                        <Row xs={1} md={2} lg={3}>
+                        <Row xs={1} md={2} lg={3} xl={4}>
                             {
                                 props.movies.map((movie: IMovieItem) => (
                                     <Col key={movie.id} className="d-flex align-items-stretch my-3">
@@ -51,6 +52,7 @@ const MovieListPage = (props: Props) => {
                     </>
                 )
             }
+
             <FavouriteToasterMessage
                 toasterstate={props.toasterstate}
                 setToasterstate={props.setToasterstate} />
