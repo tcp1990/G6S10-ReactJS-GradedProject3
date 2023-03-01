@@ -3,8 +3,9 @@ import IMovieItem from '../models/IMovieItem';
 
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
-const getUpcomingMovies = () => {
-    return axios.get<IMovieItem[]>(`${baseUrl}/movies-coming`)
+const getUpcomingMovies = (props: string) => {
+    var suffix = (props === '') ? '' : `/_search?title=${props}`;
+    return axios.get<IMovieItem[]>(`${baseUrl}/movies-coming${suffix}`)
         .then(response => response.data)
 };
 

@@ -8,6 +8,7 @@ import ToasterMessage from '../ToasterMessage';
 import IToasterState from '../../models/IToasterState';
 
 type Props = {
+    searchValue: string;
     toasterstate: IToasterState;
     addFavouriteMovieAction: (params: IMovieItem) => void;
     setToasterstate: any;
@@ -19,7 +20,7 @@ const ComingSoon = (props: Props) => {
     useEffect(() => {
         const getMovies = async () => {
             try {
-                const upcomingMoviesData = await getUpcomingMovies();
+                const upcomingMoviesData = await getUpcomingMovies(props.searchValue);
                 setMovies(upcomingMoviesData);
             } catch (error) {
 
@@ -29,7 +30,7 @@ const ComingSoon = (props: Props) => {
         };
 
         getMovies();
-    }, []);
+    }, [props.searchValue]);
 
     return (
         <>
