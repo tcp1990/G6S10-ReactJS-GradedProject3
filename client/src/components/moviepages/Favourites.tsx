@@ -4,9 +4,16 @@ import { getFavourites } from '../../services/movies';
 import MovieCardItem from '../MovieCardItem';
 import { Row, Col } from 'react-bootstrap';
 import RemoveFavourites from '../favourites/RemoveFavourites';
-import { removeFavouriteMovie } from '../common';
+import IToasterState from '../../models/IToasterState';
+import ToasterMessage from '../ToasterMessage';
 
-const Favourites = (props: any) => {
+type Props = {
+    toasterstate: IToasterState;
+    removeFavouriteMovieAction: (params: IMovieItem) => void;
+    setToasterstate: any;
+};
+
+const Favourites = (props: Props) => {
 
     const [movies, setMovies] = useState<IMovieItem[]>([]);
 
@@ -34,12 +41,13 @@ const Favourites = (props: any) => {
                             <MovieCardItem
                                 movie={movie}
                                 favouriteComponent={<RemoveFavourites />}
-                                handleFavouritesClick={removeFavouriteMovie}
+                                handleFavouritesClick={props.removeFavouriteMovieAction}
                             />
                         </Col>
                     ))
                 }
             </Row>
+            <ToasterMessage toasterstate={props.toasterstate} setToasterstate={props.setToasterstate} />
         </>
     );
 };

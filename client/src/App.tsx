@@ -11,7 +11,7 @@ import MovieDetails from './components/MovieDetails';
 import { useState } from 'react';
 import IToasterState from './models/IToasterState';
 import IMovieItem from './models/IMovieItem';
-import { addFavourites } from './services/movies';
+import { addFavourites, removeFavourites } from './services/movies';
 
 function App() {
 
@@ -45,6 +45,30 @@ function App() {
 		}
 	};
 
+	const removeFavouriteMovieAction = async (movie: IMovieItem) => {
+		try {
+			setToasterstate({
+				...toasterstate,
+				responseState: 'initial'
+			});
+			const data = await removeFavourites(movie);
+			setToasterstate({
+				...toasterstate,
+				responseState: 'success',
+				toastMessage: `A menu item with id=${data.id} has been removed successfully`,
+				show: true
+			});
+
+		} catch (error) {
+			setToasterstate({
+				...toasterstate,
+				responseState: 'error',
+				toastMessage: (error as Error).message,
+				show: true
+			});
+		}
+	};
+
 	return (
 		<>
 			<BrowserRouter>
@@ -53,7 +77,10 @@ function App() {
 				<Container>
 					<Routes>
 						<Route path="/movies/:id" element={<MovieDetails />} />
-						<Route path="/favourities" element={<Favourites />} />
+						<Route path="/favourities" element={<Favourites
+							removeFavouriteMovieAction={removeFavouriteMovieAction}
+							toasterstate={toasterstate}
+							setToasterstate={setToasterstate} />} />
 
 						<Route path="/top-rated-movies" element={<TopRatedMovies
 							addFavouriteMovieAction={addFavouriteMovieAction}
