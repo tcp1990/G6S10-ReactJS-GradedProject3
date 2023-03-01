@@ -1,8 +1,6 @@
-import { faClock } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { Row, Col, Badge, Alert } from "react-bootstrap";
-import { Route, useNavigate, useParams } from 'react-router-dom';
+import { Row, Col, Alert } from "react-bootstrap";
+import { useParams } from 'react-router-dom';
 import IMovieItem from "../../models/IMovieItem";
 import { LoadingStatus } from "../../models/types";
 import { getMovieById } from "../../services/movies";
@@ -13,29 +11,32 @@ type Props = {
     movieType: string;
 }
 
+const styles = {
+    detailRow: {
+        padding: '5px'
+    }
+}
+
 const MovieDetails = (props: Props) => {
     let { id } = useParams();
     const [status, setStatus] = useState<LoadingStatus>('LOADING');
     const [movie, setMovie] = useState<IMovieItem | null>(null);
     const [error, setError] = useState<Error | null>(null);
 
-    useEffect(
-        () => {
-            const fetchMovie = async () => {
-                try {
-                    const data = await getMovieById({ movieType: props.movieType, suffix: id });
-                    setMovie(data);
-                    setStatus('LOADED');
-                } catch (error) {
-                    setError(error as Error);
-                    setStatus('ERROR_LOADING');
-                }
-            };
+    useEffect(() => {
+        const fetchMovie = async () => {
+            try {
+                const data = await getMovieById({ movieType: props.movieType, suffix: id });
+                setMovie(data);
+                setStatus('LOADED');
+            } catch (error) {
+                setError(error as Error);
+                setStatus('ERROR_LOADING');
+            }
+        };
 
-            fetchMovie();
-        },
-        []
-    );
+        fetchMovie();
+    }, [props.movieType, id]);
 
     let el;
 
@@ -50,12 +51,10 @@ const MovieDetails = (props: Props) => {
             break;
         case 'LOADED':
             const {
-                id,
                 title,
                 year,
                 genres,
                 ratings,
-                poster,
                 contentRating,
                 duration,
                 releaseDate,
@@ -67,11 +66,13 @@ const MovieDetails = (props: Props) => {
                 posterurl
             } = movie as IMovieItem;
 
+            const newRating = (ratings.reduce((a, v) => a = a + (v / 2), 0)) / ratings.length;
+
             el = (
                 <>
                     <Row>
                         <Col xs={12}>
-                            <h1>{title}</h1>
+                            <h1>{title} ({year})</h1>
                             <hr />
                         </Col>
                         <Col xs={12} lg={4} className="my-2">
@@ -82,46 +83,89 @@ const MovieDetails = (props: Props) => {
                             />
                         </Col>
                         <Col xs={12} lg={8} className="my-2">
-                            {/* <div>
-                                {
-                                    cuisines.map(
-                                        cuisine => (
-                                            <Badge
-                                                bg="primary me-2"
-                                                key={cuisine}
-                                            >
-                                                {cuisine}
-                                            </Badge>
-                                        )
-                                    )
-                                }
-                            </div> */}
-                            <div className="fs-5 my-2">{storyline}</div>
-                            <Row xs={3} className="text-sm">
-                                {/* <Col>
-                                    <FontAwesomeIcon icon={faClock} />
-                                    <span className="ms-2">{opens} - {closes}</span>
-                                </Col> */}
+                            <Row className="text-sm" style={styles.detailRow}>
                                 <Col>
-                                    <Rating value={averageRating} className="me-2" />
-                                    {ratings} ({imdbRating} ratings)
+                                    <span className="ms-2">Original Title</span>
                                 </Col>
-                                {/* <Col>
-                                    Cost for two: Rs. {costForTwo}
-                                </Col> */}
+                                <Col>
+                                    {originalTitle}
+                                </Col>
+                            </Row>
+                            <Row className="text-sm" style={styles.detailRow}>
+                                <Col>
+                                    <span className="ms-2">Rating</span>
+                                </Col>
+                                <Col>
+                                    <Rating value={newRating} className="me-2" />
+                                    {newRating.toFixed(3)} ({ratings.length} ratings)
+                                </Col>
+                            </Row>
+                            <Row className="text-sm" style={styles.detailRow}>
+                                <Col>
+                                    <span className="ms-2">imdbRating</span>
+                                </Col>
+                                <Col>
+                                    {imdbRating}
+                                </Col>
+                            </Row>
+                            <Row className="text-sm" style={styles.detailRow}>
+                                <Col>
+                                    <span className="ms-2">Content Rating</span>
+                                </Col>
+                                <Col>
+                                    {contentRating}
+                                </Col>
+                            </Row>
+                            <Row className="text-sm" style={styles.detailRow}>
+                                <Col>
+                                    <span className="ms-2">Average Rating</span>
+                                </Col>
+                                <Col>
+                                    {averageRating}
+                                </Col>
+                            </Row>
+                            <Row className="text-sm" style={styles.detailRow}>
+                                <Col>
+                                    <span className="ms-2">Duration</span>
+                                </Col>
+                                <Col>
+                                    {duration}
+                                </Col>
+                            </Row>
+                            <Row className="text-sm" style={styles.detailRow}>
+                                <Col>
+                                    <span className="ms-2">Genres</span>
+                                </Col>
+                                <Col>
+                                    {genres.map(e => e).join(', ')}
+                                </Col>
+                            </Row>
+                            <Row className="text-sm" style={styles.detailRow}>
+                                <Col>
+                                    <span className="ms-2">Actors</span>
+                                </Col>
+                                <Col>
+                                    {actors.map(e => e).join(', ')}
+                                </Col>
+                            </Row>
+                            <Row className="text-sm" style={styles.detailRow}>
+                                <Col>
+                                    <span className="ms-2">Release Date</span>
+                                </Col>
+                                <Col>
+                                    {releaseDate}
+                                </Col>
+                            </Row>
+                            <Row className="text-sm" style={styles.detailRow}>
+                                <Col>
+                                    <span className="ms-2">Story line</span>
+                                </Col>
+                                <Col>
+                                    {storyline}
+                                </Col>
                             </Row>
                         </Col>
                     </Row>
-
-                    {/* <Route
-                        path={match.path}
-                        render={(props: RouteComponentProps) => <Menu {...props} id={id} />}
-                        exact
-                    />
-                    <Route
-                        path={`${match.path}/add`}
-                        render={(props: RouteComponentProps) => <AddMenuItem {...props} id={id} />}
-                    /> */}
                 </>
             );
             break;
