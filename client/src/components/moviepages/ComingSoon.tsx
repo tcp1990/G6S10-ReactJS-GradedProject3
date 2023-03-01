@@ -13,6 +13,9 @@ type Props = {
 
 const ComingSoon = (props: Props) => {
     const [movies, setMovies] = useState<IMovieItem[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string>('');
+    const [show, setShow] = useState<boolean>(false);
 
     useEffect(() => {
         const getMovies = async () => {
@@ -20,9 +23,10 @@ const ComingSoon = (props: Props) => {
                 const upcomingMoviesData = await getUpcomingMovies(props.searchValue);
                 setMovies(upcomingMoviesData);
             } catch (error) {
-
+                setError((error as Error).message);
+                setShow(true);
             } finally {
-
+                setLoading(false);
             }
         };
 
@@ -32,6 +36,9 @@ const ComingSoon = (props: Props) => {
     return (
         <>
             <MovieListPage
+                loading={loading}
+                error={error}
+                show={show}
                 movies={movies}
                 searchValue={props.searchValue}
                 addFavouriteMovieAction={props.addFavouriteMovieAction}

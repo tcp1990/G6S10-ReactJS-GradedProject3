@@ -4,8 +4,12 @@ import { Row, Col } from 'react-bootstrap';
 import FavouriteComponent from '../favourites/AddFavourites';
 import IToasterState from '../../models/IToasterState';
 import ToasterMessage from '../ToasterMessage';
+import LoadingIndicator from "../common/LoadingIndicator";
 
 type Props = {
+    loading: boolean;
+    error: string;
+    show: boolean;
     movies: IMovieItem[];
     searchValue: string;
     toasterstate: IToasterState;
@@ -17,6 +21,14 @@ const MovieListPage = (props: Props) => {
 
     return (
         <>
+        {
+                props.loading && (
+                    <LoadingIndicator
+                        size="large"
+                        message="We are fetching the movies list. Please wait..."
+                    />
+                )
+            }
             <Row xs={1} md={2} lg={3}>
                 {
                     props.movies.map((movie: IMovieItem) => (

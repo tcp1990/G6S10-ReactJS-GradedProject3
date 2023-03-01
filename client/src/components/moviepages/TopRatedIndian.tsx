@@ -13,6 +13,9 @@ type Props = {
 
 const TopRatedIndian = (props: Props) => {
     const [movies, setMovies] = useState<IMovieItem[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string>('');
+    const [show, setShow] = useState<boolean>(false);
 
     useEffect(() => {
         const getMovies = async () => {
@@ -20,9 +23,10 @@ const TopRatedIndian = (props: Props) => {
                 const topRatedIndiaData = await getTopRatedIndia(props.searchValue);
                 setMovies(topRatedIndiaData);
             } catch (error) {
-
+                setError((error as Error).message);
+                setShow(true);
             } finally {
-
+                setLoading(false);
             }
         };
 
@@ -32,6 +36,9 @@ const TopRatedIndian = (props: Props) => {
     return (
         <>
             <MovieListPage
+                loading={loading}
+                error={error}
+                show={show}
                 movies={movies}
                 searchValue={props.searchValue}
                 addFavouriteMovieAction={props.addFavouriteMovieAction}
