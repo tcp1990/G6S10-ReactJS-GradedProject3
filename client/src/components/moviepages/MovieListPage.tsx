@@ -32,19 +32,25 @@ const MovieListPage = (props: Props) => {
                     />
                 )
             }
-            <Row xs={1} md={2} lg={3}>
-                {
-                    props.movies.map((movie: IMovieItem) => (
-                        <Col key={movie.id} className="d-flex align-items-stretch my-3">
-                            <MovieCardItem
-                                movie={movie}
-                                favouriteComponent={props.favouriteComponent}
-                                handleFavouritesClick={props.addFavouriteMovieAction}
-                            />
-                        </Col>
-                    ))
-                }
-            </Row>
+            {
+                props.movies && (
+                    <>
+                        <Row xs={1} md={2} lg={3}>
+                            {
+                                props.movies.map((movie: IMovieItem) => (
+                                    <Col key={movie.id} className="d-flex align-items-stretch my-3">
+                                        <MovieCardItem
+                                            movie={movie}
+                                            favouriteComponent={props.favouriteComponent}
+                                            handleFavouritesClick={props.addFavouriteMovieAction}
+                                        />
+                                    </Col>
+                                ))
+                            }
+                        </Row>
+                    </>
+                )
+            }
             <FavouriteToasterMessage
                 toasterstate={props.toasterstate}
                 setToasterstate={props.setToasterstate} />

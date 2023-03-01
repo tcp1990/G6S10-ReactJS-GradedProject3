@@ -39,8 +39,8 @@
 }
 
 .movie-favourite-container {
-  background-color: #141414;
-  color: #ffffff;
+  background-color: white;
+  color: grey;
   font-size: 20px;
   text-align: center;
 }

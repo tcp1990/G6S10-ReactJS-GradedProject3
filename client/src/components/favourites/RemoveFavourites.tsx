@@ -2,6 +2,7 @@ const RemoveFavourites = () => {
 	return (
 		<>
 			<span className='mr-2'>Remove from favourites</span>
+			&nbsp;&nbsp;
 			<svg
 				width='1em'
 				height='1em'
