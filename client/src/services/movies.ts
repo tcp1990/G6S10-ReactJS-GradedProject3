@@ -21,8 +21,9 @@ const getTopRatedIndia = (props: string) => {
         .then(response => response.data)
 };
 
-const getTopRatedMovies = () => {
-    return axios.get<IMovieItem[]>(`${baseUrl}/top-rated-movies`)
+const getTopRatedMovies = (props: string) => {
+    var suffix = (props === '') ? '' : `/_search?title=${props}`;
+    return axios.get<IMovieItem[]>(`${baseUrl}/top-rated-movies${suffix}`)
         .then(response => response.data)
 };
 
