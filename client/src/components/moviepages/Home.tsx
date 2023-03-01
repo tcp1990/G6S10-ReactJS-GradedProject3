@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import IMovieItem from "../../models/IMovieItem";
 import { addFavourites, getMoviesInTheaters } from '../../services/movies';
 import MovieCardItem from '../MovieCardItem';
-import { Row, Col, ToastContainer, Toast } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import FavouriteComponent from '../favourites/AddFavourites';
 import IToasterState from '../../models/IToasterState';
+import Toastermessage from '../Toastermessage';
 
 const Home = (props: any) => {
     const [movies, setMovies] = useState<IMovieItem[]>([]);
@@ -68,26 +69,7 @@ const Home = (props: any) => {
                     ))
                 }
             </Row>
-            {
-                toasterstate.responseState !== 'initial' && (
-                    <ToastContainer className="p-3" position="top-end">
-                        <Toast
-                            bg={toasterstate.responseState === 'success' ? 'success' : 'danger'}
-                            show={toasterstate.show}
-                            autohide
-                            delay={5000}
-                            onClose={() => setToasterstate({ ...toasterstate, show: false })}
-                        >
-                            <Toast.Header closeButton={false}>
-                                {toasterstate.responseState === 'success' ? 'Success' : 'Error'}
-                            </Toast.Header>
-                            <Toast.Body>
-                                {toasterstate.toastMessage}
-                            </Toast.Body>
-                        </Toast>
-                    </ToastContainer>
-                )
-            }
+            <Toastermessage toasterstate={toasterstate} setToasterstate={setToasterstate} />
         </>
     );
 };
