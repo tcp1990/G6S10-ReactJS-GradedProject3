@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap';
 import IMovieItem from '../models/IMovieItem';
 
 type Props = {
-    movie: IMovieItem
+    movie: IMovieItem;
     handleFavouritesClick: (params: IMovieItem) => void;
     favouriteComponent: ReactNode;
 };

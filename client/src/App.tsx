@@ -8,8 +8,42 @@ import TopRatedIndian from './components/moviepages/TopRatedIndian';
 import Favourites from './components/moviepages/Favourites';
 import TopRatedMovies from './components/moviepages/TopRatedMovies';
 import MovieDetails from './components/MovieDetails';
+import { useState } from 'react';
+import IToasterState from './models/IToasterState';
+import IMovieItem from './models/IMovieItem';
+import { addFavourites } from './services/movies';
 
 function App() {
+
+	const [toasterstate, setToasterstate] = useState<IToasterState>({
+		responseState: 'initial',
+		toastMessage: '',
+		show: false
+	});
+
+	const addFavouriteMovieAction = async (movie: IMovieItem) => {
+		try {
+			setToasterstate({
+				...toasterstate,
+				responseState: 'initial'
+			});
+			const data = await addFavourites(movie);
+			setToasterstate({
+				...toasterstate,
+				responseState: 'success',
+				toastMessage: `A menu item with id=${data.id} has been added successfully`,
+				show: true
+			});
+
+		} catch (error) {
+			setToasterstate({
+				...toasterstate,
+				responseState: 'error',
+				toastMessage: (error as Error).message,
+				show: true
+			});
+		}
+	};
 
 	return (
 		<>
@@ -23,7 +57,10 @@ function App() {
 						<Route path="/top-rated-movies" element={<TopRatedMovies />} />
 						<Route path="/top-rated-indian" element={<TopRatedIndian />} />
 						<Route path="/coming-soon" element={<ComingSoon />} />
-						<Route path="/" element={<Home />} />
+						<Route path="/" element={<Home
+							addFavouriteMovieAction={addFavouriteMovieAction}
+							toasterstate={toasterstate}
+							setToasterstate={setToasterstate} />} />
 					</Routes>
 				</Container>
 			</BrowserRouter>

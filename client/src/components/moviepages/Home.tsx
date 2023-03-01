@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
 import IMovieItem from "../../models/IMovieItem";
-import { addFavourites, getMoviesInTheaters } from '../../services/movies';
+import { getMoviesInTheaters } from '../../services/movies';
 import MovieCardItem from '../MovieCardItem';
 import { Row, Col } from 'react-bootstrap';
 import FavouriteComponent from '../favourites/AddFavourites';
-import IToasterState from '../../models/IToasterState';
 import Toastermessage from '../Toastermessage';
+import IToasterState from '../../models/IToasterState';
 
-const Home = (props: any) => {
+type Props = {
+    toasterstate: IToasterState;
+    addFavouriteMovieAction: (params: IMovieItem) => void;
+    setToasterstate: any;
+};
+
+const Home = (props: Props) => {
     const [movies, setMovies] = useState<IMovieItem[]>([]);
-    const [toasterstate, setToasterstate] = useState<IToasterState>({
-        responseState: 'initial',
-        toastMessage: '',
-        show: false
-    });
 
     useEffect(() => {
         const getMovies = async () => {
@@ -30,30 +31,6 @@ const Home = (props: any) => {
         getMovies();
     }, []);
 
-    const addFavouriteMovieAction = async (movie: IMovieItem) => {
-        try {
-            setToasterstate({
-                ...toasterstate,
-                responseState: 'initial'
-            });
-            const data = await addFavourites(movie);
-            setToasterstate({
-                ...toasterstate,
-                responseState: 'success',
-                toastMessage: `A menu item with id=${data.id} has been added successfully`,
-                show: true
-            });
-
-        } catch (error) {
-            setToasterstate({
-                ...toasterstate,
-                responseState: 'error',
-                toastMessage: (error as Error).message,
-                show: true
-            });
-        }
-    }
-
     return (
         <>
             <Row xs={1} md={2} lg={3}>
@@ -63,13 +40,13 @@ const Home = (props: any) => {
                             <MovieCardItem
                                 movie={movie}
                                 favouriteComponent={<FavouriteComponent />}
-                                handleFavouritesClick={addFavouriteMovieAction}
+                                handleFavouritesClick={props.addFavouriteMovieAction}
                             />
                         </Col>
                     ))
                 }
             </Row>
-            <Toastermessage toasterstate={toasterstate} setToasterstate={setToasterstate} />
+            <Toastermessage toasterstate={props.toasterstate} setToasterstate={props.setToasterstate} />
         </>
     );
 };
