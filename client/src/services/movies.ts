@@ -1,29 +1,43 @@
 import axios from 'axios';
 import IMovieItem from '../models/IMovieItem';
 
+const baseUrl = process.env.REACT_APP_API_BASE_URL;
+
 const getUpcomingMovies = () => {
-    return axios.get<IMovieItem[]>( `${process.env.REACT_APP_API_BASE_URL}/movies-coming` )
-            .then( response => response.data )
+    return axios.get<IMovieItem[]>(`${baseUrl}/movies-coming`)
+        .then(response => response.data)
 };
 
 const getMoviesInTheaters = () => {
-    return axios.get<IMovieItem[]>( `${process.env.REACT_APP_API_BASE_URL}/movies-in-theaters` )
-            .then( response => response.data )
+    return axios.get<IMovieItem[]>(`${baseUrl}/movies-in-theaters`)
+        .then(response => response.data)
 };
 
 const getTopRatedIndia = () => {
-    return axios.get<IMovieItem[]>( `${process.env.REACT_APP_API_BASE_URL}/top-rated-india` )
-            .then( response => response.data )
+    return axios.get<IMovieItem[]>(`${baseUrl}/top-rated-india`)
+        .then(response => response.data)
 };
 
 const getTopRatedMovies = () => {
-    return axios.get<IMovieItem[]>( `${process.env.REACT_APP_API_BASE_URL}/top-rated-movies` )
-            .then( response => response.data )
+    return axios.get<IMovieItem[]>(`${baseUrl}/top-rated-movies`)
+        .then(response => response.data)
 };
 
 const getFavourites = () => {
-    return axios.get<IMovieItem[]>( `${process.env.REACT_APP_API_BASE_URL}/favourite` )
-            .then( response => response.data )
+    return axios.get<IMovieItem[]>(`${baseUrl}/favourite`)
+        .then(response => response.data)
+};
+
+const addFavourites = (favouritemovie: IMovieItem) => {
+    return axios.post<IMovieItem>(
+        `${baseUrl}/favourite`,
+        favouritemovie,
+        {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    ).then(response => response.data)
 };
 
 export {
@@ -31,5 +45,6 @@ export {
     getMoviesInTheaters,
     getTopRatedIndia,
     getTopRatedMovies,
-    getFavourites
+    getFavourites,
+    addFavourites
 };
