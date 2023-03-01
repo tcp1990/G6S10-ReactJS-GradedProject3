@@ -14,7 +14,7 @@ type Props = {
     setToasterstate: any;
 };
 
-const Home = (props: Props) => {
+const MoviesInTheaters = (props: Props) => {
     const [movies, setMovies] = useState<IMovieItem[]>([]);
 
     useEffect(() => {
@@ -52,4 +52,4 @@ const Home = (props: Props) => {
     );
 };
 
-export default Home;
+export default MoviesInTheaters;

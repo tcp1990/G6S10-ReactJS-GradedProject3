@@ -2,7 +2,7 @@ import './App.css';
 import NavigationMenu from './components/navbar/NavigationMenu';
 import Container from 'react-bootstrap/Container';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './components/moviepages/Home';
+import MoviesInTheaters from './components/moviepages/MoviesInTheaters';
 import ComingSoon from './components/moviepages/ComingSoon';
 import TopRatedIndian from './components/moviepages/TopRatedIndian';
 import Favourites from './components/moviepages/Favourites';
@@ -105,7 +105,7 @@ function App() {
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
 
-						<Route path="/" element={<Home
+						<Route path="/" element={<MoviesInTheaters
 							searchValue={searchValue}
 							addFavouriteMovieAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
