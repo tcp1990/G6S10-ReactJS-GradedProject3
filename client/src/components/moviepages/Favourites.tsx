@@ -7,6 +7,7 @@ import RemoveFavourites from '../favourites/RemoveFavourites';
 
 type Props = {
     searchValue: string;
+    movieType: string;
     toasterstate: IToasterState;
     removeFavouriteMovieAction: (params: IMovieItem) => void;
     setToasterstate: any;
@@ -18,7 +19,6 @@ const Favourites = (props: Props) => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>('');
     const [show, setShow] = useState<boolean>(false);
-    const movieType = 'favourite';
 
     useEffect(() => {
         const getMovies = async () => {
@@ -44,7 +44,7 @@ const Favourites = (props: Props) => {
                 show={show}
                 setShow={setShow}
                 movies={movies}
-                movieType={movieType}
+                movieType={props.movieType}
                 searchValue={props.searchValue}
                 favouriteComponent={<RemoveFavourites />}
                 addFavouriteMovieAction={props.removeFavouriteMovieAction}

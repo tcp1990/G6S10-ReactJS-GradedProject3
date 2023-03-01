@@ -83,46 +83,52 @@ function App() {
 
 				<NavigationMenu
 					searchValue={searchValue}
-					setSearchValue={setSearchValue} />
+					setSearchValue={setSearchValue}
+					movieTypeList={movieTypeList} />
 
 				<Container>
 					<Routes>
-						<Route path="/movies-in-theaters/:id"
+						<Route path={`/${movieTypeList[0]}/:id`}
 							element={<MovieDetails movieType={movieTypeList[0]} />} />
-						<Route path="/movies-coming/:id"
+						<Route path={`/${movieTypeList[1]}/:id`}
 							element={<MovieDetails movieType={movieTypeList[1]} />} />
-						<Route path="/top-rated-india/:id"
+						<Route path={`/${movieTypeList[2]}/:id`}
 							element={<MovieDetails movieType={movieTypeList[2]} />} />
-						<Route path="/top-rated-movies/:id"
+						<Route path={`/${movieTypeList[3]}/:id`}
 							element={<MovieDetails movieType={movieTypeList[3]} />} />
-						<Route path="/favourite/:id"
+						<Route path={`/${movieTypeList[4]}/:id`}
 							element={<MovieDetails movieType={movieTypeList[4]} />} />
 
-						<Route path="/favourities" element={<Favourites
+						<Route path={`/${movieTypeList[4]}`} element={<Favourites
+							movieType={movieTypeList[4]}
 							searchValue={searchValue}
 							removeFavouriteMovieAction={removeFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
 
-						<Route path="/top-rated-movies" element={<TopRatedMovies
+						<Route path={`/${movieTypeList[3]}`} element={<TopRatedMovies
+							movieType={movieTypeList[3]}
 							searchValue={searchValue}
 							addFavouriteMovieAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
 
-						<Route path="/top-rated-indian" element={<TopRatedIndian
+						<Route path={`/${movieTypeList[2]}`} element={<TopRatedIndian
+							movieType={movieTypeList[2]}
 							searchValue={searchValue}
 							addFavouriteMovieAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
 
-						<Route path="/coming-soon" element={<ComingSoon
+						<Route path={`/${movieTypeList[1]}`} element={<ComingSoon
+							movieType={movieTypeList[1]}
 							searchValue={searchValue}
 							addFavouriteMovieAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
 
 						<Route path="/" element={<MoviesInTheaters
+							movieType={movieTypeList[0]}
 							searchValue={searchValue}
 							addFavouriteMovieAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
