@@ -1,9 +1,11 @@
 import { ReactNode } from 'react';
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import IMovieItem from '../models/IMovieItem';
 
 type Props = {
     movie: IMovieItem;
+    movieType: string;
     handleFavouritesClick: (params: IMovieItem) => void;
     favouriteComponent: ReactNode;
 };
@@ -48,6 +50,11 @@ const MovieCardItem = (props: Props) => {
                     style={styles.cardTitle}>
                     <div>
                         {props.movie.title}
+                    </div>
+                    <div>
+                        <Link to={`/${props.movieType}/${props.movie.id}`} className="btn btn-primary btn-sm">
+                            Details
+                        </Link>
                     </div>
                 </Card.Title>
                 <Card.Text style={styles.cardText}>

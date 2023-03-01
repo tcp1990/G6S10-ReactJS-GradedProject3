@@ -9,6 +9,7 @@ import LoadingToasterMessage from "../LoadingToasterMessage";
 
 type Props = {
     favouriteComponent: ReactNode;
+    movieType: string;
     setShow: (params: boolean) => void;
     loading: boolean;
     error: string;
@@ -42,6 +43,7 @@ const MovieListPage = (props: Props) => {
                                     <Col key={movie.id} className="d-flex align-items-stretch my-3">
                                         <MovieCardItem
                                             movie={movie}
+                                            movieType={props.movieType}
                                             favouriteComponent={props.favouriteComponent}
                                             handleFavouritesClick={props.addFavouriteMovieAction}
                                         />

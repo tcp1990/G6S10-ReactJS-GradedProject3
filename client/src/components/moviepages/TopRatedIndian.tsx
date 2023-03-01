@@ -17,6 +17,7 @@ const TopRatedIndian = (props: Props) => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>('');
     const [show, setShow] = useState<boolean>(false);
+    const movieType = 'top-rated-india';
 
     useEffect(() => {
         const getMovies = async () => {
@@ -42,6 +43,7 @@ const TopRatedIndian = (props: Props) => {
                 show={show}
                 setShow={setShow}
                 movies={movies}
+                movieType={movieType}
                 searchValue={props.searchValue}
                 favouriteComponent={<FavouriteComponent />}
                 addFavouriteMovieAction={props.addFavouriteMovieAction}

@@ -3,6 +3,15 @@ import IMovieItem from '../models/IMovieItem';
 
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
+type Props = {
+    suffix: string | undefined;
+    movieType:string;
+}
+const getMovieById = ( props : Props ) => {
+    return axios.get<IMovieItem>( `${process.env.REACT_APP_API_BASE_URL}/${props.movieType}/${props.suffix}` )
+            .then( response => response.data )
+};
+
 const getUpcomingMovies = (props: string) => {
     var suffix = (props === '') ? '' : `/_search?title=${props}`;
     return axios.get<IMovieItem[]>(`${baseUrl}/movies-coming${suffix}`)
@@ -52,6 +61,7 @@ const removeFavourites = (favouritemovie: IMovieItem) => {
 };
 
 export {
+    getMovieById,
     getUpcomingMovies,
     getMoviesInTheaters,
     getTopRatedIndia,

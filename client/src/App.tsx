@@ -13,6 +13,13 @@ import IToasterState from './models/IToasterState';
 import IMovieItem from './models/IMovieItem';
 import { addFavourites, removeFavourites } from './services/movies';
 
+const movieTypeList = [
+	'movies-in-theaters',
+	'movies-coming',
+	'top-rated-india',
+	'top-rated-movies',
+	'favourite'];
+
 function App() {
 
 	const [searchValue, setSearchValue] = useState('');
@@ -80,7 +87,17 @@ function App() {
 
 				<Container>
 					<Routes>
-						<Route path="/movies/:id" element={<MovieDetails />} />
+						<Route path="/movies-in-theaters/:id"
+							element={<MovieDetails movieType={movieTypeList[0]} />} />
+						<Route path="/movies-coming/:id"
+							element={<MovieDetails movieType={movieTypeList[1]} />} />
+						<Route path="/top-rated-india/:id"
+							element={<MovieDetails movieType={movieTypeList[2]} />} />
+						<Route path="/top-rated-movies/:id"
+							element={<MovieDetails movieType={movieTypeList[3]} />} />
+						<Route path="/favourite/:id"
+							element={<MovieDetails movieType={movieTypeList[4]} />} />
+
 						<Route path="/favourities" element={<Favourites
 							searchValue={searchValue}
 							removeFavouriteMovieAction={removeFavouriteMovieAction}
