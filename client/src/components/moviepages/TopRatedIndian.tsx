@@ -3,6 +3,7 @@ import IMovieItem from "../../models/IMovieItem";
 import { getTopRatedIndia } from '../../services/movies';
 import IToasterState from '../../models/IToasterState';
 import MovieListPage from './MovieListPage';
+import FavouriteComponent from '../favourites/AddFavourites';
 
 type Props = {
     searchValue: string;
@@ -42,6 +43,7 @@ const TopRatedIndian = (props: Props) => {
                 setShow={setShow}
                 movies={movies}
                 searchValue={props.searchValue}
+                favouriteComponent={<FavouriteComponent />}
                 addFavouriteMovieAction={props.addFavouriteMovieAction}
                 toasterstate={props.toasterstate}
                 setToasterstate={props.setToasterstate} />

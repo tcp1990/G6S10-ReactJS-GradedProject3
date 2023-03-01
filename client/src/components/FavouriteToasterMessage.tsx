@@ -6,7 +6,7 @@ type Props = {
     toasterstate: IToasterState;
 }
 
-const ToasterMessage = (props: Props) => {
+const FavouriteToasterMessage = (props: Props) => {
 
     return (
         <>
@@ -34,4 +34,4 @@ const ToasterMessage = (props: Props) => {
     );
 };
 
-export default ToasterMessage;
+export default FavouriteToasterMessage;

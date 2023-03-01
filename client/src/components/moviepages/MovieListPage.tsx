@@ -1,12 +1,14 @@
+import { ReactNode } from "react";
 import IMovieItem from "../../models/IMovieItem";
 import MovieCardItem from '../MovieCardItem';
-import { Row, Col, ToastContainer, Toast } from 'react-bootstrap';
-import FavouriteComponent from '../favourites/AddFavourites';
+import { Row, Col } from 'react-bootstrap';
 import IToasterState from '../../models/IToasterState';
-import ToasterMessage from '../ToasterMessage';
+import FavouriteToasterMessage from '../FavouriteToasterMessage';
 import LoadingIndicator from "../common/LoadingIndicator";
+import LoadingToasterMessage from "../LoadingToasterMessage";
 
 type Props = {
+    favouriteComponent: ReactNode;
     setShow: (params: boolean) => void;
     loading: boolean;
     error: string;
@@ -36,33 +38,21 @@ const MovieListPage = (props: Props) => {
                         <Col key={movie.id} className="d-flex align-items-stretch my-3">
                             <MovieCardItem
                                 movie={movie}
-                                favouriteComponent={<FavouriteComponent />}
+                                favouriteComponent={props.favouriteComponent}
                                 handleFavouritesClick={props.addFavouriteMovieAction}
                             />
                         </Col>
                     ))
                 }
             </Row>
-            <ToasterMessage toasterstate={props.toasterstate} setToasterstate={props.setToasterstate} />
+            <FavouriteToasterMessage
+                toasterstate={props.toasterstate}
+                setToasterstate={props.setToasterstate} />
 
-            {
-                props.error && (
-                    <ToastContainer className="p-3" position="top-end">
-                        <Toast
-                            bg="danger"
-                            show={props.show}
-                            autohide
-                            delay={5000}
-                            onClose={() => props.setShow(false)}
-                        >
-                            <Toast.Header closeButton={false}>
-                                Error
-                            </Toast.Header>
-                            <Toast.Body>{props.error}</Toast.Body>
-                        </Toast>
-                    </ToastContainer>
-                )
-            }
+            <LoadingToasterMessage
+                show={props.show}
+                error={props.error}
+                setShow={props.setShow} />
         </>
     );
 };

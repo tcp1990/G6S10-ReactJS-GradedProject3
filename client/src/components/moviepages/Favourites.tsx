@@ -3,6 +3,7 @@ import IMovieItem from "../../models/IMovieItem";
 import { getFavourites } from '../../services/movies';
 import IToasterState from '../../models/IToasterState';
 import MovieListPage from './MovieListPage';
+import RemoveFavourites from '../favourites/RemoveFavourites';
 
 type Props = {
     searchValue: string;
@@ -43,6 +44,7 @@ const Favourites = (props: Props) => {
                 setShow={setShow}
                 movies={movies}
                 searchValue={props.searchValue}
+                favouriteComponent={<RemoveFavourites />}
                 addFavouriteMovieAction={props.removeFavouriteMovieAction}
                 toasterstate={props.toasterstate}
                 setToasterstate={props.setToasterstate} />
