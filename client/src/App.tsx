@@ -2,7 +2,7 @@ import './App.css';
 import NavigationMenu from './components/navbar/NavigationMenu';
 import Container from 'react-bootstrap/Container';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import MovieDetails from './components/MovieDetails';
+import MovieDetails from './components/moviepages/MovieDetails';
 import { useState } from 'react';
 import IToasterState from './models/IToasterState';
 import IMovieItem from './models/IMovieItem';

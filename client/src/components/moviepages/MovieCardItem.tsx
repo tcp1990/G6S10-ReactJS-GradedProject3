@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import IMovieItem from '../models/IMovieItem';
+import IMovieItem from '../../models/IMovieItem';
 
 type Props = {
     movie: IMovieItem;

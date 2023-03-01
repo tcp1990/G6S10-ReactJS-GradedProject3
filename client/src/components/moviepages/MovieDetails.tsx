@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Row, Col, Badge, Alert } from "react-bootstrap";
 import { Route, useNavigate, useParams } from 'react-router-dom';
-import IMovieItem from "../models/IMovieItem";
-import { LoadingStatus } from "../models/types";
-import { getMovieById } from "../services/movies";
-import LoadingIndicator from "./common/LoadingIndicator";
-import Rating from "./common/Rating";
+import IMovieItem from "../../models/IMovieItem";
+import { LoadingStatus } from "../../models/types";
+import { getMovieById } from "../../services/movies";
+import LoadingIndicator from "../common/LoadingIndicator";
+import Rating from "../common/Rating";
 
 type Props = {
     movieType: string;

@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 import IMovieItem from "../../models/IMovieItem";
-import MovieCardItem from '../MovieCardItem';
+import MovieCardItem from './MovieCardItem';
 import { Row, Col } from 'react-bootstrap';
 import IToasterState from '../../models/IToasterState';
 import FavouriteToasterMessage from '../FavouriteToasterMessage';
