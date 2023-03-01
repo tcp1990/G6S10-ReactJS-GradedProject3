@@ -27,6 +27,10 @@ const MovieListPage = (props: Props) => {
     useEffect(() => {
         const getMovies = async () => {
             try {
+                setLoading(true);
+                setMovies([]);
+                setShow(false);
+                setError('');
                 const moviesList = await getMovieList({
                     movieType: props.movieType,
                     suffix: props.searchValue
