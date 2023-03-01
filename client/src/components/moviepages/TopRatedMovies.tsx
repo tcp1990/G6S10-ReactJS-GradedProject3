@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
-import IMovieItem from "../models/IMovieItem";
-import { getMoviesInTheaters } from '../services/movies';
-import MovieCardItem from './MovieCardItem';
+import IMovieItem from "../../models/IMovieItem";
+import { getTopRatedMovies } from '../../services/movies';
+import MovieCardItem from '../MovieCardItem';
 import { Row, Col } from 'react-bootstrap';
+import FavouriteComponent from '../favourites/AddFavourites';
 
-const Home = (props: any) => {
+const TopRatedMovies = (props: any) => {
     const [movies, setMovies] = useState<IMovieItem[]>([]);
 
     useEffect(() => {
         const getMovies = async () => {
             try {
-                const moviesInTheatersData = await getMoviesInTheaters();
-                setMovies(moviesInTheatersData);
+                const topRatedMoviesData = await getTopRatedMovies();
+                setMovies(topRatedMoviesData);
             } catch (error) {
 
             } finally {
@@ -30,6 +31,7 @@ const Home = (props: any) => {
                         <Col key={movie.id} className="d-flex align-items-stretch my-3">
                             <MovieCardItem
                                 movie={movie}
+                                favouriteComponent={<FavouriteComponent />}
                             />
                         </Col>
                     ))
@@ -39,4 +41,4 @@ const Home = (props: any) => {
     );
 };
 
-export default Home;
+export default TopRatedMovies;

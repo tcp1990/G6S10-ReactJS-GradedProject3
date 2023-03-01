@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 
 const NavigationMenu = () => {
     return (
-        <Navbar bg="light" expand="lg" style={{position: "sticky"}} fixed="top">
+        <Navbar bg="light" expand="lg" style={{ position: "sticky" }} fixed="top">
             <Container fluid>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">

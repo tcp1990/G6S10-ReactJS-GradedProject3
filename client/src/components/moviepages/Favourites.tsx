@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
-import IMovieItem from "../models/IMovieItem";
-import { getTopRatedMovies } from '../services/movies';
-import MovieCardItem from './MovieCardItem';
+import IMovieItem from "../../models/IMovieItem";
+import { getFavourites } from '../../services/movies';
+import MovieCardItem from '../MovieCardItem';
 import { Row, Col } from 'react-bootstrap';
+import RemoveFavourites from '../favourites/RemoveFavourites';
 
-const TopRatedMovies = (props: any) => {
+const Favourites = (props: any) => {
+
     const [movies, setMovies] = useState<IMovieItem[]>([]);
 
     useEffect(() => {
         const getMovies = async () => {
             try {
-                const topRatedMoviesData = await getTopRatedMovies();
-                setMovies(topRatedMoviesData);
+                const favouritesData = await getFavourites();
+                setMovies(favouritesData);
             } catch (error) {
 
             } finally {
@@ -30,6 +32,7 @@ const TopRatedMovies = (props: any) => {
                         <Col key={movie.id} className="d-flex align-items-stretch my-3">
                             <MovieCardItem
                                 movie={movie}
+                                favouriteComponent={<RemoveFavourites />}
                             />
                         </Col>
                     ))
@@ -39,4 +42,4 @@ const TopRatedMovies = (props: any) => {
     );
 };
 
-export default TopRatedMovies;
+export default Favourites;

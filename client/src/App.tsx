@@ -4,18 +4,18 @@ import NavigationMenu from './components/navbar/NavigationMenu';
 import Container from 'react-bootstrap/Container';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import IMovieItem from "./models/IMovieItem";
-import Home from './components/Home';
-import ComingSoon from './components/ComingSoon';
-import TopRatedIndian from './components/TopRatedIndian';
-import Favourites from './components/Favourites';
-import TopRatedMovies from './components/TopRatedMovies';
+import Home from './components/moviepages/Home';
+import ComingSoon from './components/moviepages/ComingSoon';
+import TopRatedIndian from './components/moviepages/TopRatedIndian';
+import Favourites from './components/moviepages/Favourites';
+import TopRatedMovies from './components/moviepages/TopRatedMovies';
 import MovieDetails from './components/MovieDetails';
 
 function App() {
 
-  const [favourites, setFavourites] = useState<IMovieItem[]>([]);
-  
-  useEffect(() => {
+	const [favourites, setFavourites] = useState<IMovieItem[]>([]);
+
+	useEffect(() => {
 		const movieFavourites = JSON.parse(
 			localStorage.getItem('react-movie-app-favourites') || '{}'
 		);
@@ -45,24 +45,24 @@ function App() {
 	};
 
 
-  return (
-    <>
-      <BrowserRouter>
-        <NavigationMenu />
+	return (
+		<>
+			<BrowserRouter>
+				<NavigationMenu />
 
-        <Container>
-          <Routes>
-            <Route path="/movies/:id" element={<MovieDetails/>} />
-            <Route path="/favourities" element={<Favourites/>} />
-            <Route path="/top-rated-movies" element={<TopRatedMovies handleFavouritesClick={addFavouriteMovie}/>} />
-            <Route path="/top-rated-indian" element={<TopRatedIndian handleFavouritesClick={addFavouriteMovie}/>} />
-            <Route path="/coming-soon" element={<ComingSoon handleFavouritesClick={addFavouriteMovie}/>} />
-            <Route path="/" element={<Home handleFavouritesClick={addFavouriteMovie}/>} />
-          </Routes>
-        </Container>
-      </BrowserRouter>
-    </>
-  );
+				<Container>
+					<Routes>
+						<Route path="/movies/:id" element={<MovieDetails />} />
+						<Route path="/favourities" element={<Favourites />} />
+						<Route path="/top-rated-movies" element={<TopRatedMovies handleFavouritesClick={addFavouriteMovie} />} />
+						<Route path="/top-rated-indian" element={<TopRatedIndian handleFavouritesClick={addFavouriteMovie} />} />
+						<Route path="/coming-soon" element={<ComingSoon handleFavouritesClick={addFavouriteMovie} />} />
+						<Route path="/" element={<Home handleFavouritesClick={addFavouriteMovie} />} />
+					</Routes>
+				</Container>
+			</BrowserRouter>
+		</>
+	);
 }
 
 export default App;

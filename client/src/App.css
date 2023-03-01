@@ -32,14 +32,15 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-.movie-favourite-container{
-	background-color: #141414;
-	color: #ffffff;
-	font-size:20px;
-	text-align: center;
+.movie-favourite-container {
+  background-color: #141414;
+  color: #ffffff;
+  font-size: 20px;
+  text-align: center;
 }
