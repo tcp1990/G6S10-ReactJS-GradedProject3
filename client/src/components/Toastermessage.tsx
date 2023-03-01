@@ -1,6 +1,6 @@
 import { ToastContainer, Toast } from "react-bootstrap";
 
-const Toastermessage = (props: any) => {
+const ToasterMessage = (props: any) => {
 
     return (
         <>
@@ -28,4 +28,4 @@ const Toastermessage = (props: any) => {
     );
 };
 
-export default Toastermessage;
+export default ToasterMessage;

@@ -4,8 +4,8 @@ import { getMoviesInTheaters } from '../../services/movies';
 import MovieCardItem from '../MovieCardItem';
 import { Row, Col } from 'react-bootstrap';
 import FavouriteComponent from '../favourites/AddFavourites';
-import Toastermessage from '../Toastermessage';
 import IToasterState from '../../models/IToasterState';
+import ToasterMessage from '../ToasterMessage';
 
 type Props = {
     toasterstate: IToasterState;
@@ -46,7 +46,7 @@ const Home = (props: Props) => {
                     ))
                 }
             </Row>
-            <Toastermessage toasterstate={props.toasterstate} setToasterstate={props.setToasterstate} />
+            <ToasterMessage toasterstate={props.toasterstate} setToasterstate={props.setToasterstate} />
         </>
     );
 };

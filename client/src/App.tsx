@@ -55,12 +55,19 @@ function App() {
 						<Route path="/movies/:id" element={<MovieDetails />} />
 						<Route path="/favourities" element={<Favourites />} />
 						<Route path="/top-rated-movies" element={<TopRatedMovies />} />
-						<Route path="/top-rated-indian" element={<TopRatedIndian />} />
+
+						<Route path="/top-rated-indian" element={<TopRatedIndian
+							addFavouriteMovieAction={addFavouriteMovieAction}
+							toasterstate={toasterstate}
+							setToasterstate={setToasterstate} />} />
+
 						<Route path="/coming-soon" element={<ComingSoon />} />
+
 						<Route path="/" element={<Home
 							addFavouriteMovieAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
+
 					</Routes>
 				</Container>
 			</BrowserRouter>
