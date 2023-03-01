@@ -8,6 +8,7 @@ import IToasterState from '../../models/IToasterState';
 import ToasterMessage from '../ToasterMessage';
 
 type Props = {
+    searchValue: string;
     toasterstate: IToasterState;
     removeFavouriteMovieAction: (params: IMovieItem) => void;
     setToasterstate: any;
@@ -20,7 +21,7 @@ const Favourites = (props: Props) => {
     useEffect(() => {
         const getMovies = async () => {
             try {
-                const favouritesData = await getFavourites();
+                const favouritesData = await getFavourites(props.searchValue);
                 setMovies(favouritesData);
             } catch (error) {
 
@@ -30,7 +31,7 @@ const Favourites = (props: Props) => {
         };
 
         getMovies();
-    }, []);
+    }, [props.searchValue]);
 
     return (
         <>

@@ -82,6 +82,7 @@ function App() {
 					<Routes>
 						<Route path="/movies/:id" element={<MovieDetails />} />
 						<Route path="/favourities" element={<Favourites
+							searchValue={searchValue}
 							removeFavouriteMovieAction={removeFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />

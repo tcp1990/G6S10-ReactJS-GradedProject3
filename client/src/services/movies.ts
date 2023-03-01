@@ -27,8 +27,9 @@ const getTopRatedMovies = (props: string) => {
         .then(response => response.data)
 };
 
-const getFavourites = () => {
-    return axios.get<IMovieItem[]>(`${baseUrl}/favourite`)
+const getFavourites = (props: string) => {
+    var suffix = (props === '') ? '' : `/_search?title=${props}`;
+    return axios.get<IMovieItem[]>(`${baseUrl}/favourite${suffix}`)
         .then(response => response.data)
 };
 
