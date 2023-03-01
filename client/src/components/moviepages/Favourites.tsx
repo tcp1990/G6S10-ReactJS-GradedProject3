@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
 import IMovieItem from "../../models/IMovieItem";
 import { getFavourites } from '../../services/movies';
-import MovieCardItem from '../MovieCardItem';
-import { Row, Col } from 'react-bootstrap';
-import RemoveFavourites from '../favourites/RemoveFavourites';
 import IToasterState from '../../models/IToasterState';
-import ToasterMessage from '../ToasterMessage';
+import MovieListPage from './MovieListPage';
 
 type Props = {
     searchValue: string;
@@ -35,20 +32,12 @@ const Favourites = (props: Props) => {
 
     return (
         <>
-            <Row xs={1} md={2} lg={3}>
-                {
-                    movies.map((movie: IMovieItem) => (
-                        <Col key={movie.id} className="d-flex align-items-stretch my-3">
-                            <MovieCardItem
-                                movie={movie}
-                                favouriteComponent={<RemoveFavourites />}
-                                handleFavouritesClick={props.removeFavouriteMovieAction}
-                            />
-                        </Col>
-                    ))
-                }
-            </Row>
-            <ToasterMessage toasterstate={props.toasterstate} setToasterstate={props.setToasterstate} />
+            <MovieListPage
+                movies={movies}
+                searchValue={props.searchValue}
+                addFavouriteMovieAction={props.removeFavouriteMovieAction}
+                toasterstate={props.toasterstate}
+                setToasterstate={props.setToasterstate} />
         </>
     );
 };
