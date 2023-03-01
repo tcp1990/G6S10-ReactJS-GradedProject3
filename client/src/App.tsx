@@ -54,7 +54,11 @@ function App() {
 					<Routes>
 						<Route path="/movies/:id" element={<MovieDetails />} />
 						<Route path="/favourities" element={<Favourites />} />
-						<Route path="/top-rated-movies" element={<TopRatedMovies />} />
+
+						<Route path="/top-rated-movies" element={<TopRatedMovies
+							addFavouriteMovieAction={addFavouriteMovieAction}
+							toasterstate={toasterstate}
+							setToasterstate={setToasterstate} />} />
 
 						<Route path="/top-rated-indian" element={<TopRatedIndian
 							addFavouriteMovieAction={addFavouriteMovieAction}
