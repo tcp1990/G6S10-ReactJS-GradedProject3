@@ -15,6 +15,7 @@ import { addFavourites, removeFavourites } from './services/movies';
 
 function App() {
 
+	const [searchValue, setSearchValue] = useState('');
 	const [toasterstate, setToasterstate] = useState<IToasterState>({
 		responseState: 'initial',
 		toastMessage: '',
@@ -72,7 +73,10 @@ function App() {
 	return (
 		<>
 			<BrowserRouter>
-				<NavigationMenu />
+
+				<NavigationMenu
+					searchValue={searchValue}
+					setSearchValue={setSearchValue} />
 
 				<Container>
 					<Routes>
@@ -98,6 +102,7 @@ function App() {
 							setToasterstate={setToasterstate} />} />
 
 						<Route path="/" element={<Home
+							searchValue={searchValue}
 							addFavouriteMovieAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />

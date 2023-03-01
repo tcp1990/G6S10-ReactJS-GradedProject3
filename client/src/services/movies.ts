@@ -8,8 +8,9 @@ const getUpcomingMovies = () => {
         .then(response => response.data)
 };
 
-const getMoviesInTheaters = () => {
-    return axios.get<IMovieItem[]>(`${baseUrl}/movies-in-theaters`)
+const getMoviesInTheaters = (props: string) => {
+    var suffix = (props === '') ? '' : `/_search?title=${props}`;
+    return axios.get<IMovieItem[]>(`${baseUrl}/movies-in-theaters${suffix}`)
         .then(response => response.data)
 };
 

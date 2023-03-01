@@ -2,10 +2,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import { NavLink } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 
-const NavigationMenu = () => {
+const NavigationMenu = (props: any) => {
     return (
         <Navbar bg="light" expand="lg" style={{ position: "sticky" }} fixed="top">
             <Container fluid>
@@ -22,15 +20,14 @@ const NavigationMenu = () => {
                         <Nav.Link to="/top-rated-movies" as={NavLink}>Top rated movies</Nav.Link>
                         <Nav.Link to="/favourities" as={NavLink}>Favourities</Nav.Link>
                     </Nav>
-                    <Form className="d-flex">
-                        <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button variant="outline-success">Search</Button>
-                    </Form>
+                    <div className='d-flex'>
+                        <input
+                            className='form-control'
+                            value={props.value}
+                            onChange={(event) => props.setSearchValue(event.target.value)}
+                            placeholder='Type to search...'
+                        ></input>
+                    </div>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
