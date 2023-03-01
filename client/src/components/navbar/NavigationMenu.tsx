@@ -31,7 +31,7 @@ const NavigationMenu = (props: Props) => {
                             className='form-control'
                             value={props.searchValue}
                             onChange={(event) => props.setSearchValue(event.target.value)}
-                            placeholder='Type to search...'
+                            placeholder='Search movie'
                         ></input>
                     </div>
                 </Navbar.Collapse>
