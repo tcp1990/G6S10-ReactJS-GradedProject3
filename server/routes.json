@@ -1,0 +1,4 @@
+{
+    "/*/_search?*=:searchstring": "/$1/?$2_like=:searchstring",
+    "/*": "/$1"
+}
