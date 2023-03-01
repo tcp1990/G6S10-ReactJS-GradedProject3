@@ -8,7 +8,7 @@ import IToasterState from './models/IToasterState';
 import IMovieItem from './models/IMovieItem';
 import { addFavourites, removeFavourites } from './services/movies';
 import MovieListPage from './components/moviepages/MovieListPage';
-import FavouriteComponent from './components/favourites/AddFavourites';
+import AddFavourites from './components/favourites/AddFavourites';
 import RemoveFavourites from './components/favourites/RemoveFavourites';
 
 const movieTypeList = [
@@ -108,7 +108,7 @@ function App() {
 						<Route path={`/${movieTypeList[3]}`} element={<MovieListPage
 							movieType={movieTypeList[3]}
 							searchValue={searchValue}
-							favouriteComponent={<FavouriteComponent />}
+							favouriteComponent={<AddFavourites />}
 							favouriteClickAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
@@ -116,7 +116,7 @@ function App() {
 						<Route path={`/${movieTypeList[2]}`} element={<MovieListPage
 							movieType={movieTypeList[2]}
 							searchValue={searchValue}
-							favouriteComponent={<FavouriteComponent />}
+							favouriteComponent={<AddFavourites />}
 							favouriteClickAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
@@ -124,7 +124,7 @@ function App() {
 						<Route path={`/${movieTypeList[1]}`} element={<MovieListPage
 							movieType={movieTypeList[1]}
 							searchValue={searchValue}
-							favouriteComponent={<FavouriteComponent />}
+							favouriteComponent={<AddFavourites />}
 							favouriteClickAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
@@ -132,7 +132,7 @@ function App() {
 						<Route path="/" element={<MovieListPage
 							movieType={movieTypeList[0]}
 							searchValue={searchValue}
-							favouriteComponent={<FavouriteComponent />}
+							favouriteComponent={<AddFavourites />}
 							favouriteClickAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
