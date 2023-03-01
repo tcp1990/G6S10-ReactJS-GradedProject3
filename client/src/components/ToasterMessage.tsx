@@ -1,6 +1,12 @@
 import { ToastContainer, Toast } from "react-bootstrap";
+import IToasterState from "../models/IToasterState";
 
-const ToasterMessage = (props: any) => {
+type Props = {
+    setToasterstate: (params: IToasterState) => void;
+    toasterstate: IToasterState;
+}
+
+const ToasterMessage = (props: Props) => {
 
     return (
         <>

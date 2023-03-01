@@ -1,12 +1,13 @@
 import IMovieItem from "../../models/IMovieItem";
 import MovieCardItem from '../MovieCardItem';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, ToastContainer, Toast } from 'react-bootstrap';
 import FavouriteComponent from '../favourites/AddFavourites';
 import IToasterState from '../../models/IToasterState';
 import ToasterMessage from '../ToasterMessage';
 import LoadingIndicator from "../common/LoadingIndicator";
 
 type Props = {
+    setShow: (params: boolean) => void;
     loading: boolean;
     error: string;
     show: boolean;
@@ -14,14 +15,14 @@ type Props = {
     searchValue: string;
     toasterstate: IToasterState;
     addFavouriteMovieAction: (params: IMovieItem) => void;
-    setToasterstate: any;
+    setToasterstate: (params: IToasterState) => void;
 };
 
 const MovieListPage = (props: Props) => {
 
     return (
         <>
-        {
+            {
                 props.loading && (
                     <LoadingIndicator
                         size="large"
@@ -43,6 +44,25 @@ const MovieListPage = (props: Props) => {
                 }
             </Row>
             <ToasterMessage toasterstate={props.toasterstate} setToasterstate={props.setToasterstate} />
+
+            {
+                props.error && (
+                    <ToastContainer className="p-3" position="top-end">
+                        <Toast
+                            bg="danger"
+                            show={props.show}
+                            autohide
+                            delay={5000}
+                            onClose={() => props.setShow(false)}
+                        >
+                            <Toast.Header closeButton={false}>
+                                Error
+                            </Toast.Header>
+                            <Toast.Body>{props.error}</Toast.Body>
+                        </Toast>
+                    </ToastContainer>
+                )
+            }
         </>
     );
 };

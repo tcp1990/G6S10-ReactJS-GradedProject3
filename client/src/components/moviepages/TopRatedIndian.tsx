@@ -39,6 +39,7 @@ const TopRatedIndian = (props: Props) => {
                 loading={loading}
                 error={error}
                 show={show}
+                setShow={setShow}
                 movies={movies}
                 searchValue={props.searchValue}
                 addFavouriteMovieAction={props.addFavouriteMovieAction}
