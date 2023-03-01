@@ -4,16 +4,11 @@ import { addFavourites, getMoviesInTheaters } from '../../services/movies';
 import MovieCardItem from '../MovieCardItem';
 import { Row, Col, ToastContainer, Toast } from 'react-bootstrap';
 import FavouriteComponent from '../favourites/AddFavourites';
-
-type State = {
-    responseState: 'initial' | 'success' | 'error',
-    toastMessage: string,
-    show: boolean
-};
+import IToasterState from '../../models/IToasterState';
 
 const Home = (props: any) => {
     const [movies, setMovies] = useState<IMovieItem[]>([]);
-    const [state, setState] = useState<State>({
+    const [toasterstate, setToasterstate] = useState<IToasterState>({
         responseState: 'initial',
         toastMessage: '',
         show: false
@@ -36,21 +31,21 @@ const Home = (props: any) => {
 
     const addFavouriteMovieAction = async (movie: IMovieItem) => {
         try {
-            setState({
-                ...state,
+            setToasterstate({
+                ...toasterstate,
                 responseState: 'initial'
             });
             const data = await addFavourites(movie);
-            setState({
-                ...state,
+            setToasterstate({
+                ...toasterstate,
                 responseState: 'success',
                 toastMessage: `A menu item with id=${data.id} has been added successfully`,
                 show: true
             });
 
         } catch (error) {
-            setState({
-                ...state,
+            setToasterstate({
+                ...toasterstate,
                 responseState: 'error',
                 toastMessage: (error as Error).message,
                 show: true
@@ -74,20 +69,20 @@ const Home = (props: any) => {
                 }
             </Row>
             {
-                state.responseState !== 'initial' && (
+                toasterstate.responseState !== 'initial' && (
                     <ToastContainer className="p-3" position="top-end">
                         <Toast
-                            bg={state.responseState === 'success' ? 'success' : 'danger'}
-                            show={state.show}
+                            bg={toasterstate.responseState === 'success' ? 'success' : 'danger'}
+                            show={toasterstate.show}
                             autohide
                             delay={5000}
-                            onClose={() => setState({ ...state, show: false })}
+                            onClose={() => setToasterstate({ ...toasterstate, show: false })}
                         >
                             <Toast.Header closeButton={false}>
-                                {state.responseState === 'success' ? 'Success' : 'Error'}
+                                {toasterstate.responseState === 'success' ? 'Success' : 'Error'}
                             </Toast.Header>
                             <Toast.Body>
-                                {state.toastMessage}
+                                {toasterstate.toastMessage}
                             </Toast.Body>
                         </Toast>
                     </ToastContainer>
