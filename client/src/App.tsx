@@ -9,7 +9,7 @@ import ComingSoon from './components/ComingSoon';
 import TopRatedIndian from './components/TopRatedIndian';
 import Favourites from './components/Favourites';
 import TopRatedMovies from './components/TopRatedMovies';
-import MoviDetails from './components/MoviDetails';
+import MovieDetails from './components/MovieDetails';
 
 function App() {
 
@@ -52,7 +52,7 @@ function App() {
 
         <Container>
           <Routes>
-            <Route path="/movies/:id" element={<MoviDetails/>} />
+            <Route path="/movies/:id" element={<MovieDetails/>} />
             <Route path="/favourities" element={<Favourites/>} />
             <Route path="/top-rated-movies" element={<TopRatedMovies handleFavouritesClick={addFavouriteMovie}/>} />
             <Route path="/top-rated-indian" element={<TopRatedIndian handleFavouritesClick={addFavouriteMovie}/>} />

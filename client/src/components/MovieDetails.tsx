@@ -1,4 +1,4 @@
-const MoviDetails = (props: any) => {
+const MovieDetails = (props: any) => {
     return (
         <>
             <h1>Hi Movie details</h1>
@@ -6,4 +6,4 @@ const MoviDetails = (props: any) => {
     );
 };
 
-export default MoviDetails;
+export default MovieDetails;
