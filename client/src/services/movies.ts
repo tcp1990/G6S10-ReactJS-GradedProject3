@@ -4,41 +4,20 @@ import IMovieItem from '../models/IMovieItem';
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 type Props = {
+    movieType: string;
     suffix: string | undefined;
-    movieType:string;
 }
-const getMovieById = ( props : Props ) => {
-    return axios.get<IMovieItem>( `${process.env.REACT_APP_API_BASE_URL}/${props.movieType}/${props.suffix}` )
-            .then( response => response.data )
-};
 
-const getUpcomingMovies = (props: string) => {
-    var suffix = (props === '') ? '' : `/_search?title=${props}`;
-    return axios.get<IMovieItem[]>(`${baseUrl}/movies-coming${suffix}`)
+const getMovieById = (props: Props) => {
+    const url = `${baseUrl}/${props.movieType}/${props.suffix}`;
+    return axios.get<IMovieItem>(url)
         .then(response => response.data)
 };
 
-const getMoviesInTheaters = (props: string) => {
-    var suffix = (props === '') ? '' : `/_search?title=${props}`;
-    return axios.get<IMovieItem[]>(`${baseUrl}/movies-in-theaters${suffix}`)
-        .then(response => response.data)
-};
-
-const getTopRatedIndia = (props: string) => {
-    var suffix = (props === '') ? '' : `/_search?title=${props}`;
-    return axios.get<IMovieItem[]>(`${baseUrl}/top-rated-india${suffix}`)
-        .then(response => response.data)
-};
-
-const getTopRatedMovies = (props: string) => {
-    var suffix = (props === '') ? '' : `/_search?title=${props}`;
-    return axios.get<IMovieItem[]>(`${baseUrl}/top-rated-movies${suffix}`)
-        .then(response => response.data)
-};
-
-const getFavourites = (props: string) => {
-    var suffix = (props === '') ? '' : `/_search?title=${props}`;
-    return axios.get<IMovieItem[]>(`${baseUrl}/favourite${suffix}`)
+const getMovieList = (props: Props) => {
+    const suffix = (props.suffix === '') ? '' : `/_search?title=${props.suffix}`;
+    const url = `${baseUrl}/${props.movieType}${suffix}`;
+    return axios.get<IMovieItem[]>(url)
         .then(response => response.data)
 };
 
@@ -62,11 +41,7 @@ const removeFavourites = (favouritemovie: IMovieItem) => {
 
 export {
     getMovieById,
-    getUpcomingMovies,
-    getMoviesInTheaters,
-    getTopRatedIndia,
-    getTopRatedMovies,
-    getFavourites,
+    getMovieList,
     addFavourites,
     removeFavourites
 };

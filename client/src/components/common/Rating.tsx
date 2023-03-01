@@ -10,30 +10,30 @@ type Props = {
     className?: string
 };
 
-const Rating = ( { value, className } : Props ) => {
-    const numFullStars = Math.floor( value );
-    const numHalfStars = Math.round( value ) - Math.floor( value );
-    const numEmptyStars = 5 - ( numFullStars + numHalfStars );
+const Rating = ({ value, className }: Props) => {
+    const numFullStars = Math.floor(value);
+    const numHalfStars = Math.round(value) - Math.floor(value);
+    const numEmptyStars = 5 - (numFullStars + numHalfStars);
 
     return (
         <span className={`rating ${className}`}>
             {
-                Array.from( { length: numFullStars } ).map(
-                    ( item, idx ) => (
+                Array.from({ length: numFullStars }).map(
+                    (item, idx) => (
                         <FontAwesomeIcon icon={faStar} key={idx} />
                     )
                 )
             }
             {
-                Array.from( { length: numHalfStars } ).map(
-                    ( item, idx ) => (
+                Array.from({ length: numHalfStars }).map(
+                    (item, idx) => (
                         <FontAwesomeIcon icon={faStarHalfAlt} key={idx} />
                     )
                 )
             }
             {
-                Array.from( { length: numEmptyStars } ).map(
-                    ( item, idx ) => (
+                Array.from({ length: numEmptyStars }).map(
+                    (item, idx) => (
                         <FontAwesomeIcon icon={faStarEmpty} key={idx} />
                     )
                 )

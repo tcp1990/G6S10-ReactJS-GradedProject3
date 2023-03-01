@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import IMovieItem from "../../models/IMovieItem";
-import { getFavourites } from '../../services/movies';
+import { getMovieList } from '../../services/movies';
 import IToasterState from '../../models/IToasterState';
 import MovieListPage from './MovieListPage';
 import RemoveFavourites from '../favourites/RemoveFavourites';
@@ -23,8 +23,11 @@ const Favourites = (props: Props) => {
     useEffect(() => {
         const getMovies = async () => {
             try {
-                const favouritesData = await getFavourites(props.searchValue);
-                setMovies(favouritesData);
+                const moviesList = await getMovieList({
+                    movieType: props.movieType,
+                    suffix: props.searchValue
+                });
+                setMovies(moviesList);
             } catch (error) {
                 setError((error as Error).message);
                 setShow(true);
@@ -34,7 +37,7 @@ const Favourites = (props: Props) => {
         };
 
         getMovies();
-    }, [props.searchValue]);
+    }, [props.movieType, props.searchValue]);
 
     return (
         <>

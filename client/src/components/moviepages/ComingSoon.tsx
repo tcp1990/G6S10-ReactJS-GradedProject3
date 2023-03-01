@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import IMovieItem from "../../models/IMovieItem";
-import { getUpcomingMovies } from '../../services/movies';
+import { getMovieList } from '../../services/movies';
 import IToasterState from '../../models/IToasterState';
 import MovieListPage from './MovieListPage';
 import FavouriteComponent from '../favourites/AddFavourites';
@@ -22,8 +22,11 @@ const ComingSoon = (props: Props) => {
     useEffect(() => {
         const getMovies = async () => {
             try {
-                const upcomingMoviesData = await getUpcomingMovies(props.searchValue);
-                setMovies(upcomingMoviesData);
+                const moviesList = await getMovieList({
+                    movieType: props.movieType,
+                    suffix: props.searchValue
+                });
+                setMovies(moviesList);
             } catch (error) {
                 setError((error as Error).message);
                 setShow(true);
@@ -33,7 +36,7 @@ const ComingSoon = (props: Props) => {
         };
 
         getMovies();
-    }, [props.searchValue]);
+    }, [props.movieType, props.searchValue]);
 
     return (
         <>
