@@ -13,7 +13,7 @@ type Props = {
     movieType: string;
     searchValue: string;
     toasterstate: IToasterState;
-    addFavouriteMovieAction: (params: IMovieItem) => void;
+    favouriteClickAction: (params: IMovieItem) => void;
     setToasterstate: (params: IToasterState) => void;
 };
 
@@ -65,7 +65,7 @@ const MovieListPage = (props: Props) => {
                                             movie={movie}
                                             movieType={props.movieType}
                                             favouriteComponent={props.favouriteComponent}
-                                            handleFavouritesClick={props.addFavouriteMovieAction}
+                                            handleFavouritesClick={props.favouriteClickAction}
                                         />
                                     </Col>
                                 ))

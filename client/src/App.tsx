@@ -2,16 +2,14 @@ import './App.css';
 import NavigationMenu from './components/navbar/NavigationMenu';
 import Container from 'react-bootstrap/Container';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import MoviesInTheaters from './components/moviepages/MoviesInTheaters';
-import ComingSoon from './components/moviepages/ComingSoon';
-import TopRatedIndian from './components/moviepages/TopRatedIndian';
-import Favourites from './components/moviepages/Favourites';
-import TopRatedMovies from './components/moviepages/TopRatedMovies';
 import MovieDetails from './components/MovieDetails';
 import { useState } from 'react';
 import IToasterState from './models/IToasterState';
 import IMovieItem from './models/IMovieItem';
 import { addFavourites, removeFavourites } from './services/movies';
+import MovieListPage from './components/moviepages/MovieListPage';
+import FavouriteComponent from './components/favourites/AddFavourites';
+import RemoveFavourites from './components/favourites/RemoveFavourites';
 
 const movieTypeList = [
 	'movies-in-theaters',
@@ -99,38 +97,43 @@ function App() {
 						<Route path={`/${movieTypeList[4]}/:id`}
 							element={<MovieDetails movieType={movieTypeList[4]} />} />
 
-						<Route path={`/${movieTypeList[4]}`} element={<Favourites
+						<Route path={`/${movieTypeList[4]}`} element={<MovieListPage
 							movieType={movieTypeList[4]}
 							searchValue={searchValue}
-							removeFavouriteMovieAction={removeFavouriteMovieAction}
+							favouriteComponent={<RemoveFavourites />}
+							favouriteClickAction={removeFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
 
-						<Route path={`/${movieTypeList[3]}`} element={<TopRatedMovies
+						<Route path={`/${movieTypeList[3]}`} element={<MovieListPage
 							movieType={movieTypeList[3]}
 							searchValue={searchValue}
-							addFavouriteMovieAction={addFavouriteMovieAction}
+							favouriteComponent={<FavouriteComponent />}
+							favouriteClickAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
 
-						<Route path={`/${movieTypeList[2]}`} element={<TopRatedIndian
+						<Route path={`/${movieTypeList[2]}`} element={<MovieListPage
 							movieType={movieTypeList[2]}
 							searchValue={searchValue}
-							addFavouriteMovieAction={addFavouriteMovieAction}
+							favouriteComponent={<FavouriteComponent />}
+							favouriteClickAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
 
-						<Route path={`/${movieTypeList[1]}`} element={<ComingSoon
+						<Route path={`/${movieTypeList[1]}`} element={<MovieListPage
 							movieType={movieTypeList[1]}
 							searchValue={searchValue}
-							addFavouriteMovieAction={addFavouriteMovieAction}
+							favouriteComponent={<FavouriteComponent />}
+							favouriteClickAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
 
-						<Route path="/" element={<MoviesInTheaters
+						<Route path="/" element={<MovieListPage
 							movieType={movieTypeList[0]}
 							searchValue={searchValue}
-							addFavouriteMovieAction={addFavouriteMovieAction}
+							favouriteComponent={<FavouriteComponent />}
+							favouriteClickAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
 
