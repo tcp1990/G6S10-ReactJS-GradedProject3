@@ -65,7 +65,10 @@ function App() {
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />
 
-						<Route path="/coming-soon" element={<ComingSoon />} />
+						<Route path="/coming-soon" element={<ComingSoon
+							addFavouriteMovieAction={addFavouriteMovieAction}
+							toasterstate={toasterstate}
+							setToasterstate={setToasterstate} />} />
 
 						<Route path="/" element={<Home
 							addFavouriteMovieAction={addFavouriteMovieAction}

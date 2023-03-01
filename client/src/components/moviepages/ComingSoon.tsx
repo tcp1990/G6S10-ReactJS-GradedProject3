@@ -4,9 +4,16 @@ import { getUpcomingMovies } from '../../services/movies';
 import MovieCardItem from '../MovieCardItem';
 import { Row, Col } from 'react-bootstrap';
 import FavouriteComponent from '../favourites/AddFavourites';
-import { addFavouriteMovie } from '../common';
+import ToasterMessage from '../ToasterMessage';
+import IToasterState from '../../models/IToasterState';
 
-const ComingSoon = (props: any) => {
+type Props = {
+    toasterstate: IToasterState;
+    addFavouriteMovieAction: (params: IMovieItem) => void;
+    setToasterstate: any;
+};
+
+const ComingSoon = (props: Props) => {
     const [movies, setMovies] = useState<IMovieItem[]>([]);
 
     useEffect(() => {
@@ -33,12 +40,13 @@ const ComingSoon = (props: any) => {
                             <MovieCardItem
                                 movie={movie}
                                 favouriteComponent={<FavouriteComponent />}
-                                handleFavouritesClick={addFavouriteMovie}
+                                handleFavouritesClick={props.addFavouriteMovieAction}
                             />
                         </Col>
                     ))
                 }
             </Row>
+            <ToasterMessage toasterstate={props.toasterstate} setToasterstate={props.setToasterstate} />
         </>
     );
 };
