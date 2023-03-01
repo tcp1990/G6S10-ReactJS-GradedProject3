@@ -92,6 +92,7 @@ function App() {
 							setToasterstate={setToasterstate} />} />
 
 						<Route path="/top-rated-indian" element={<TopRatedIndian
+							searchValue={searchValue}
 							addFavouriteMovieAction={addFavouriteMovieAction}
 							toasterstate={toasterstate}
 							setToasterstate={setToasterstate} />} />

@@ -8,6 +8,7 @@ import IToasterState from '../../models/IToasterState';
 import ToasterMessage from '../ToasterMessage';
 
 type Props = {
+    searchValue: string;
     toasterstate: IToasterState;
     addFavouriteMovieAction: (params: IMovieItem) => void;
     setToasterstate: any;
@@ -19,7 +20,7 @@ const TopRatedIndian = (props: Props) => {
     useEffect(() => {
         const getMovies = async () => {
             try {
-                const topRatedIndiaData = await getTopRatedIndia();
+                const topRatedIndiaData = await getTopRatedIndia(props.searchValue);
                 setMovies(topRatedIndiaData);
             } catch (error) {
 
@@ -29,7 +30,7 @@ const TopRatedIndian = (props: Props) => {
         };
 
         getMovies();
-    }, []);
+    }, [props.searchValue]);
 
     return (
         <>
