@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import IMovieItem from '../../models/IMovieItem';
+import { useNavigate } from "react-router-dom";
 
 type Props = {
     movie: IMovieItem;
@@ -19,7 +19,8 @@ const styles = {
     },
     cardImage: {
         width: '100%',
-        height: '80%'
+        height: '80%',
+        cursor: 'pointer'
     },
     cardBody: {
         width: '100%',
@@ -31,30 +32,35 @@ const styles = {
     },
     cardText: {
         width: '100%',
-        height: '50%'
+        height: '50%',
+        cursor: 'pointer'
     }
 }
 
 const MovieCardItem = (props: Props) => {
+
+    const navigate = useNavigate();
+
+    const navigateUrl = `/${props.movieType}/${props.movie.id}`;
+
+    const navigateToDetailsPage = () => {
+        navigate(navigateUrl);
+    };
 
     return (
         <Card style={styles.card}>
             <Card.Img variant="top"
                 src={`${props.movie.posterurl}`}
                 alt={props.movie.title}
-                style={styles.cardImage} />
+                style={styles.cardImage}
+                onClick={navigateToDetailsPage} />
             <Card.Body
                 style={styles.cardBody}>
                 <Card.Title
                     className="d-flex justify-content-between"
                     style={styles.cardTitle}>
-                    <div>
+                    <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {props.movie.title}
-                    </div>
-                    <div>
-                        <Link to={`/${props.movieType}/${props.movie.id}`} className="btn btn-primary btn-sm">
-                            Details
-                        </Link>
                     </div>
                 </Card.Title>
                 <Card.Text style={styles.cardText}>
