@@ -44,3 +44,21 @@
   font-size: 20px;
   text-align: center;
 }
+
+.movie-list-empty-container {
+  height: 600px;
+  position: relative;
+}
+
+.movie-list-empty-container-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.movie-no-data-value {
+  font-size: 25px;
+}

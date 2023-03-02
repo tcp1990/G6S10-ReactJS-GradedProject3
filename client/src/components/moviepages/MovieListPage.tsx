@@ -23,6 +23,7 @@ const MovieListPage = (props: Props) => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>('');
     const [show, setShow] = useState<boolean>(false);
+    const [canShowMovieList, setCanShowMovieList] = useState<boolean>(false);
 
     useEffect(() => {
         const getMovies = async () => {
@@ -47,19 +48,29 @@ const MovieListPage = (props: Props) => {
         getMovies();
     }, [props.movieType, props.searchValue]);
 
+    useEffect(() => {
+        setCanShowMovieList((movies && movies.length > 0));
+    }, [movies]);
+
     return (
         <>
             {
                 loading && (
-                    <LoadingIndicator
-                        size="large"
-                        message="We are fetching the movies list. Please wait..."
-                    />
+                    <>
+                        <div className="movie-list-empty-container">
+                            <div className="movie-list-empty-container-center">
+                                <LoadingIndicator
+                                    size="large"
+                                    message="We are fetching the movies list. Please wait..."
+                                />
+                            </div>
+                        </div>
+                    </>
                 )
             }
 
             {
-                movies && (
+                canShowMovieList ? (
                     <>
                         <Row xs={1} md={2} lg={3} xl={4}>
                             {
@@ -77,6 +88,16 @@ const MovieListPage = (props: Props) => {
                         </Row>
                     </>
                 )
+                    :
+                    (
+                        <>
+                            <div className="movie-list-empty-container">
+                                <div className="movie-list-empty-container-center">
+                                    <p className="movie-no-data-value">No data found</p>
+                                </div>
+                            </div>
+                        </>
+                    )
             }
 
             <FavouriteToasterMessage
