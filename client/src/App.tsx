@@ -33,11 +33,11 @@ function App() {
 				...toasterstate,
 				responseState: 'initial'
 			});
-			const data = await addFavourites(movie);
+			await addFavourites(movie);
 			setToasterstate({
 				...toasterstate,
 				responseState: 'success',
-				toastMessage: `A menu item with id=${data.id} has been added successfully`,
+				toastMessage: `Successfully added to favourite`,
 				show: true
 			});
 
@@ -45,7 +45,7 @@ function App() {
 			setToasterstate({
 				...toasterstate,
 				responseState: 'error',
-				toastMessage: (error as Error).message,
+				toastMessage: 'Already added in favourite',
 				show: true
 			});
 		}
@@ -57,11 +57,11 @@ function App() {
 				...toasterstate,
 				responseState: 'initial'
 			});
-			const data = await removeFavourites(movie);
+			await removeFavourites(movie);
 			setToasterstate({
 				...toasterstate,
 				responseState: 'success',
-				toastMessage: `A menu item with id=${data.id} has been removed successfully`,
+				toastMessage: `Successfully removed from favourite`,
 				show: true
 			});
 
