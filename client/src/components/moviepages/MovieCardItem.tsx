@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { Card } from 'react-bootstrap';
 import IMovieItem from '../../models/IMovieItem';
 import { useNavigate } from "react-router-dom";
+import { movieTypeList } from '../../models/movieTypeList';
 
 type Props = {
     movie: IMovieItem;
@@ -47,6 +48,16 @@ const MovieCardItem = (props: Props) => {
         navigate(navigateUrl);
     };
 
+    const onFavouriteClick = () => {        
+        if (props.movieType === movieTypeList[4]) {
+            props.handleFavouritesClick(props.movie);
+            window.location.reload();
+        }
+        else {
+            props.handleFavouritesClick(props.movie);
+        }
+    }
+
     return (
         <Card style={styles.card}>
             <Card.Img variant="top"
@@ -64,7 +75,7 @@ const MovieCardItem = (props: Props) => {
                     </div>
                 </Card.Title>
                 <Card.Text style={styles.cardText}>
-                    <div onClick={() => props.handleFavouritesClick(props.movie)}
+                    <div onClick={onFavouriteClick}
                         className='movie-favourite-container'>
                         {props.favouriteComponent}
                     </div>

@@ -10,13 +10,7 @@ import { addFavourites, removeFavourites } from './services/movies';
 import MovieListPage from './components/moviepages/MovieListPage';
 import AddFavourites from './components/favourites/AddFavourites';
 import RemoveFavourites from './components/favourites/RemoveFavourites';
-
-const movieTypeList = [
-	'movies-in-theaters',
-	'movies-coming',
-	'top-rated-india',
-	'top-rated-movies',
-	'favourite'];
+import { movieTypeList } from './models/movieTypeList';
 
 function App() {
 
