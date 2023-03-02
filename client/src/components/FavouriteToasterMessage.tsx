@@ -20,8 +20,10 @@ const FavouriteToasterMessage = (props: Props) => {
                             delay={5000}
                             onClose={() => props.setToasterstate({ ...props.toasterstate, show: false })}
                         >
-                            <Toast.Header closeButton={false}>
-                                {props.toasterstate.responseState === 'success' ? 'Success' : 'Error'}
+                            <Toast.Header closeButton={true}>
+                                <div style={{ width: '100%' }}>
+                                    {props.toasterstate.responseState === 'success' ? 'Success' : 'Error'}
+                                </div>
                             </Toast.Header>
                             <Toast.Body>
                                 {props.toasterstate.toastMessage}

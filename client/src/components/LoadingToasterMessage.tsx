@@ -20,8 +20,10 @@ const LoadingToasterMessage = (props: Props) => {
                             delay={5000}
                             onClose={() => props.setShow(false)}
                         >
-                            <Toast.Header closeButton={false}>
-                                Error
+                            <Toast.Header closeButton={true}>
+                                <div style={{ width: '100%' }}>
+                                    Error
+                                </div>
                             </Toast.Header>
                             <Toast.Body>{props.error}</Toast.Body>
                         </Toast>
