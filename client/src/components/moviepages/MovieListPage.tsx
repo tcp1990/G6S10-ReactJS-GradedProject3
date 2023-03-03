@@ -24,6 +24,7 @@ const MovieListPage = (props: Props) => {
     const [error, setError] = useState<string>('');
     const [show, setShow] = useState<boolean>(false);
     const [canShowMovieList, setCanShowMovieList] = useState<boolean>(false);
+    const [canReload, setCanReload] = useState<boolean>(false);
 
     useEffect(() => {
         const getMovies = async () => {
@@ -46,11 +47,15 @@ const MovieListPage = (props: Props) => {
         };
 
         getMovies();
-    }, [props.movieType, props.searchValue]);
+    }, [canReload, props.movieType, props.searchValue]);
 
     useEffect(() => {
         setCanShowMovieList((movies && movies.length > 0));
     }, [movies]);
+
+    const invokeReload = () => {
+        setCanReload(!canReload);
+    };
 
     return (
         <>
@@ -81,6 +86,7 @@ const MovieListPage = (props: Props) => {
                                             movieType={props.movieType}
                                             favouriteComponent={props.favouriteComponent}
                                             handleFavouritesClick={props.favouriteClickAction}
+                                            invokeReload={invokeReload}
                                         />
                                     </Col>
                                 ))

@@ -9,6 +9,7 @@ type Props = {
     movieType: string;
     handleFavouritesClick: (params: IMovieItem) => void;
     favouriteComponent: ReactNode;
+    invokeReload: () => void;
 };
 
 const styles = {
@@ -48,10 +49,10 @@ const MovieCardItem = (props: Props) => {
         navigate(navigateUrl);
     };
 
-    const onFavouriteClick = () => {        
+    const onFavouriteClick = () => {
         if (props.movieType === movieTypeList[4]) {
             props.handleFavouritesClick(props.movie);
-            window.location.reload();
+            props.invokeReload();
         }
         else {
             props.handleFavouritesClick(props.movie);
